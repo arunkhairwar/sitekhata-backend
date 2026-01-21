@@ -1,0 +1,29 @@
+{
+  "root": [
+    "./src/app.ts",
+    "./src/server.ts",
+    "./src/db/index.ts",
+    "./src/db/prisma.ts",
+    "./src/generated/prisma/browser.ts",
+    "./src/generated/prisma/client.ts",
+    "./src/generated/prisma/commoninputtypes.ts",
+    "./src/generated/prisma/enums.ts",
+    "./src/generated/prisma/models.ts",
+    "./src/generated/prisma/internal/class.ts",
+    "./src/generated/prisma/internal/prismanamespace.ts",
+    "./src/generated/prisma/internal/prismanamespacebrowser.ts",
+    "./src/modules/index.ts",
+    "./src/modules/auth/auth.controller.ts",
+    "./src/modules/auth/auth.repository.ts",
+    "./src/modules/auth/auth.routes.ts",
+    "./src/modules/auth/auth.schema.ts",
+    "./src/modules/auth/auth.service.ts",
+    "./src/modules/auth/auth.type.ts",
+    "./src/modules/user/user.controller.ts",
+    "./src/modules/user/user.repository.ts",
+    "./src/modules/user/user.routes.ts",
+    "./src/modules/user/user.service.ts",
+    "./src/modules/user/user.types.ts"
+  ],
+  "version": "5.9.3"
+}
