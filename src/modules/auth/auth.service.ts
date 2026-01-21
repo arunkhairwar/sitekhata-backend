@@ -15,7 +15,12 @@ export const authService = {
       ...data,
       password: hashedPassword,
     });
-    return user;
+    const filteredUser = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
+    return filteredUser;
   },
 
   login: async (data: any) => {
@@ -30,6 +35,11 @@ export const authService = {
     const token = jwt.sign({ userId: user.id }, SECRET_KEY, {
       expiresIn: "1h",
     });
-    return { token, user };
+    const filteredUser = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
+    return { token, filteredUser };
   },
 };

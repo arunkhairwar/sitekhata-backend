@@ -33,6 +33,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     const result = await authService.login(validation.data);
+    res.header("Authorization", `Bearer ${result.token}`,);
     res.status(200).json(result);
   } catch (error: any) {
     if (error.message === "Invalid credentials") {
