@@ -1,46 +1,47 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { registerUserSchema, loginUserSchema } from "./auth.schema";
 import { authService } from "./auth.service";
+import { successResponse } from "../../utils/apiResponse";
+import { AppError } from "../../utils/AppError";
 
 export const registerUser = async (
   req: Request,
   res: Response,
+  next: NextFunction,
 ): Promise<void> => {
   try {
-    const validation = registerUserSchema.safeParse(req.body);
-    if (!validation.success) {
-      res.status(400).json({ error: validation.error.format() });
-      return;
-    }
+    const { body } = req;
+    const validation = registerUserSchema.parse(body);
 
-    const user = await authService.register(validation.data);
-    res.status(201).json(user);
+    const user = await authService.register(validation);
+    res.status(201).json(successResponse(user, "User registered successfully"));
   } catch (error: any) {
     if (error.message === "User already exists") {
-      res.status(400).json({ error: error.message });
+      next(new AppError(error.message, 400));
     } else {
-      res.status(500).json({ error: "Internal Server Error" });
+      next(error);
     }
   }
 };
 
-export const loginUser = async (req: Request, res: Response): Promise<void> => {
+export const loginUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const validation = loginUserSchema.safeParse(req.body);
-    if (!validation.success) {
-      res.status(400).json({ error: validation.error.format() });
-      return;
-    }
+    const { body } = req;
+    const validation = loginUserSchema.parse(body);
 
-    const result = await authService.login(validation.data);
-    res.header("Authorization", `Bearer ${result.token}`,);
-    res.status(200).json(result);
+    const result = await authService.login(validation);
+    res.header("Authorization", `Bearer ${result.token}`);
+
+    res.status(200).json(successResponse(result, "Login successful"));
   } catch (error: any) {
     if (error.message === "Invalid credentials") {
-      res.status(401).json({ error: error.message });
+      next(new AppError(error.message, 401));
     } else {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
+      next(error);
     }
   }
 };

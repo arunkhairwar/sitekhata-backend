@@ -1,4 +1,5 @@
 import { prisma } from "../../db/prisma";
+import { RegisterUserDto } from "./auth.type";
 
 export const authRepository = {
   findUserByEmail: async (email: string) => {
@@ -6,7 +7,7 @@ export const authRepository = {
       where: { email },
     });
   },
-  createUser: async (data: any) => {
+  createUser: async (data: RegisterUserDto) => {
     return prisma.user.create({
       data,
     });

@@ -12,5 +12,23 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      Role
+  mobile    String   @unique
+  address   Address?
   createdAt DateTime @default(now())
+}
+
+enum Role {
+  CONTRACTOR
+  WORKER
+}
+
+model Address {
+  id String @id @default(uuid())
+  addressLine1 String?
+  addressLine2 String?
+  city String
+  state String
+  pincode String
+  country String
 }
