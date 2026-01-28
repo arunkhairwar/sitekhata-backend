@@ -21,8 +21,8 @@ export const authService = {
       password: hashedPassword,
     });
 
-    const { password: _, addressId: __, ...result } = user;
-    return result;
+    // const { password: _, addressId: __, ...result } = user;
+    return true;
   },
 
   login: async (data: LoginUserDto) => {
@@ -49,7 +49,7 @@ export const authService = {
         throw new Error("User not found");
       }
       const { password: _, addressId: __, ...result } = user;
-      return result; 
+      return result;
     } catch (error: any) {
       if (error.name === "TokenExpiredError") {
         throw new Error("Token expired");
