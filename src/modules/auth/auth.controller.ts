@@ -45,3 +45,30 @@ export const loginUser = async (
     }
   }
 };
+
+export const verifyUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      throw new AppError("No token provided", 401);
+    }
+    const token = authHeader.split(" ")[1];
+    const result = await authService.verify(token);
+    res.status(200).json(successResponse(result, "User verified successfully"));
+  } catch (error: any) {
+    if (
+      error.message === "Invalid credentials" ||
+      error.message === "Token expired" ||
+      error.message === "Invalid token" ||
+      error.message === "No token provided"
+    ) {
+      next(new AppError(error.message, 401));
+    } else {
+      next(error);
+    }
+  }
+};

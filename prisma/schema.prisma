@@ -14,8 +14,9 @@ model User {
   password  String
   role      Role
   mobile    String   @unique
-  address   Address?
+  address   Address? @relation(fields: [addressId], references: [id])
   createdAt DateTime @default(now())
+  addressId String?
 }
 
 enum Role {
@@ -24,11 +25,12 @@ enum Role {
 }
 
 model Address {
-  id String @id @default(uuid())
+  id           String  @id @default(uuid())
   addressLine1 String?
   addressLine2 String?
-  city String
-  state String
-  pincode String
-  country String
+  city         String
+  state        String
+  pincode      String
+  country      String
+  User         User[]
 }

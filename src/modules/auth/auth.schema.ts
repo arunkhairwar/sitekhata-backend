@@ -20,8 +20,19 @@ export const registerUserSchema = z.object({
   role: z.enum(["CONTRACTOR", "WORKER"]),
   mobile: z
     .string({ message: "Mobile number is required" })
-    .regex(/^[6-9]\\d{9}/, "Invalid mobile number"),
-  address: z.string().optional(),
+    .trim()
+    .regex(/^[6-9]\d{9}$/, "Invalid mobile number"),
+
+  address: z
+    .object({
+      addressLine1: z.string().optional(),
+      addressLine2: z.string().optional(),
+      city: z.string({ message: "City is required" }),
+      state: z.string({ message: "State is required" }),
+      pincode: z.string({ message: "Pincode is required" }),
+      country: z.string({ message: "Country is required" }),
+    })
+    .optional(),
 });
 
 export const loginUserSchema = z.object({
