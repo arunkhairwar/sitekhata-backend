@@ -1,4 +1,5 @@
 import { prisma } from "../../db/prisma";
+import { getUsers } from "../user/user.controller";
 import { CreateClientInput, IClientRepository, UpdateClientInput } from "./client.types";
 
 class ClientRepository implements IClientRepository {
@@ -14,10 +15,19 @@ class ClientRepository implements IClientRepository {
                 },
                 address: address ? {
                     create: address
-                } : undefined
+                } : undefined,
             },
             include: {
-                address: true
+                address: true,
+                createdBy: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        mobile: true,
+                        role: true
+                    }
+                }
             }
         });
     }
@@ -28,7 +38,16 @@ class ClientRepository implements IClientRepository {
                 createdById: userId
             },
             include: {
-                address: true
+                address: true,
+                createdBy: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        mobile: true,
+                        role: true
+                    }
+                }
             },
             orderBy: {
                 createdAt: 'desc'

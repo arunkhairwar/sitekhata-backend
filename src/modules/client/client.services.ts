@@ -4,7 +4,8 @@ import { AppError } from "../../utils/AppError";
 
 class ClientService {
     async createClient(data: CreateClientInput, userId: string) {
-        return await clientRepository.createClient(data, userId);
+        const { createdById, ...client } = await clientRepository.createClient(data, userId);
+        return client;
     }
 
     async getAllClients(userId: string) {

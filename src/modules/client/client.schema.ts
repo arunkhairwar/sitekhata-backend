@@ -1,8 +1,8 @@
 import { z } from "zod";
-
+export const mobileValidation = z.string("Mobile number is required").trim().min(1,"mobile number is required").regex(/^[6-9]\d{9}$/, "Mobile number must be a valid.");
 export const createClientSchema = z.object({
     name: z.string("Name is required").min(3, "Name must be at least 3 characters"),
-    mobile: z.string("Mobile number is required").min(10, "Mobile number must be at least 10 digits"),
+    mobile: mobileValidation,
     address: z.object({
         addressLine1: z.string().optional(),
         addressLine2: z.string().optional(),
@@ -15,7 +15,7 @@ export const createClientSchema = z.object({
 
 export const updateClientSchema = z.object({
     name: z.string().min(3).optional(),
-    mobile: z.string().min(10).optional(),
+    mobile: mobileValidation.optional(),
     address: z.object({
         addressLine1: z.string().optional(),
         addressLine2: z.string().optional(),
