@@ -5,18 +5,20 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
+} 
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role
-  mobile    String   @unique
-  address   Address? @relation(fields: [addressId], references: [id])
-  createdAt DateTime @default(now())
-  addressId String?
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  password       String
+  role           Role
+  mobile         String   @unique
+  address        Address? @relation(fields: [addressId], references: [id])
+  createdAt      DateTime @default(now())
+  addressId      String?
+  createdClients Client[]
+  createdSites   Site[]
 }
 
 enum Role {
@@ -25,7 +27,7 @@ enum Role {
 }
 
 model Address {
-  id           String  @id @default(uuid())
+  id           String   @id @default(uuid())
   addressLine1 String?
   addressLine2 String?
   city         String
@@ -33,4 +35,30 @@ model Address {
   pincode      String
   country      String
   User         User[]
+  clients      Client[]
+  sites        Site[]
+}
+
+//======================= Client =======================
+
+model Client {
+  id          String   @id @default(uuid())
+  name        String
+  mobile      String   @unique
+  address     Address? @relation(fields: [addressId], references: [id])
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  addressId   String?
+}
+
+model Site {
+  id          String   @id @default(uuid())
+  name        String
+  mobile      String   @unique
+  address     Address? @relation(fields: [addressId], references: [id])
+  addressId   String?
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
 }

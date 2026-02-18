@@ -3,7 +3,7 @@ import { authRepository } from "./auth.repository";
 import { RegisterUserDto, LoginUserDto } from "./auth.type";
 import { hashPassword, verifyPass } from "../../utils/password.utils";
 
-const SECRET_KEY = process.env.JWT_SECRET || "default_secret";
+
 
 export const authService = {
   register: async (data: RegisterUserDto) => {
@@ -34,7 +34,7 @@ export const authService = {
     if (!isMatch) {
       throw new Error("Invalid Password");
     }
-    const token = jwt.sign({ userId: dbUser.id }, SECRET_KEY, {
+    const token = jwt.sign({ userId: dbUser.id }, process.env.JWT_SECRET!, {
       expiresIn: "1h",
     });
     return { token };
@@ -43,7 +43,7 @@ export const authService = {
 
   verify: async (token: string) => {
     try {
-      const decoded: any = jwt.verify(token, SECRET_KEY);
+      const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
       const user = await authRepository.findUserById(decoded.userId);
       if (!user) {
         throw new Error("User not found");
