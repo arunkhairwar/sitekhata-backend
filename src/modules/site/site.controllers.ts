@@ -44,3 +44,54 @@ export const getSites = async (
     next(error);
   }
 };
+
+export const getSiteById = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params.id as string;
+    const userId = req.user.id;
+    const site = await siteService.getSiteById(id, userId);
+    return res
+      .status(HttpStatus.OK)
+      .json(successResponse(site, "Site fetched successfully"));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateSite = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params.id as string;
+    const userId = req.user.id;
+    const site = await siteService.updateSite(id, req.body, userId);
+    return res
+      .status(HttpStatus.OK)
+      .json(successResponse(site, "Site updated successfully"));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteSite = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params.id as string;
+    const userId = req.user.id;
+    await siteService.deleteSite(id, userId);
+    return res
+      .status(HttpStatus.OK)
+      .json(successResponse(null, "Site deleted successfully"));
+  } catch (error) {
+    next(error);
+  }
+};

@@ -43,6 +43,20 @@ class ClientService {
     }
     return await clientRepository.deleteClient(id);
   }
+
+  async getClientById(id: string, userId: string) {
+    const client = await clientRepository.findClientById(id);
+    if (!client) {
+      throw new AppError("Client not found", HttpStatus.NOT_FOUND);
+    }
+    if (client.createdById !== userId) {
+      throw new AppError(
+        "You are not authorized to view this client",
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    return client;
+  }
 }
 
 export const clientService = new ClientService();

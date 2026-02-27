@@ -89,3 +89,20 @@ export const deleteClient = async (
     next(error);
   }
 };
+
+export const getClientById = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params.id as string;
+    const userId = req.user.id;
+    const client = await clientService.getClientById(id, userId);
+    return res
+      .status(HttpStatus.OK)
+      .json(successResponse(client, "Client fetched successfully"));
+  } catch (error) {
+    next(error);
+  }
+};
