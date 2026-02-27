@@ -87,10 +87,10 @@ export const deleteSite = async (
   try {
     const id = req.params.id as string;
     const userId = req.user.id;
-    await siteService.deleteSite(id, userId);
+    const deleteSite = await siteService.deleteSite(id, userId);
     return res
       .status(HttpStatus.OK)
-      .json(successResponse(null, "Site deleted successfully"));
+      .json(successResponse(deleteSite, "Site deleted successfully"));
   } catch (error) {
     next(error);
   }

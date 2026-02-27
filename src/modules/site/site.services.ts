@@ -83,7 +83,7 @@ class SiteService {
         HttpStatus.FORBIDDEN,
       );
     }
-    await siteRepository.deleteSite(id);
+    return await siteRepository.deleteSite(id);
   }
 }
 
