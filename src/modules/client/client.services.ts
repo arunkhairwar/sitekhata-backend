@@ -1,38 +1,48 @@
 import { clientRepository } from "./client.repository";
 import { CreateClientInput, UpdateClientInput } from "./client.types";
 import { AppError } from "../../utils/AppError";
+import { HttpStatus } from "../../utils/HttpStatus";
 
 class ClientService {
-    async createClient(data: CreateClientInput, userId: string) {
-        const { createdById, ...client } = await clientRepository.createClient(data, userId);
-        return client;
-    }
+  async createClient(data: CreateClientInput, userId: string) {
+    const { createdById, ...client } = await clientRepository.createClient(
+      data,
+      userId,
+    );
+    return client;
+  }
 
-    async getAllClients(userId: string) {
-        return await clientRepository.findAllClients(userId);
-    }
+  async getAllClients(userId: string) {
+    return await clientRepository.findAllClients(userId);
+  }
 
-    async updateClient(id: string, data: UpdateClientInput, userId: string) {
-        const client = await clientRepository.findClientById(id);
-        if (!client) {
-            throw new AppError("Client not found", 404);
-        }
-        if (client.createdById !== userId) {
-            throw new AppError("You are not authorized to update this client", 403);
-        }
-        return await clientRepository.updateClient(id, data);
+  async updateClient(id: string, data: UpdateClientInput, userId: string) {
+    const client = await clientRepository.findClientById(id);
+    if (!client) {
+      throw new AppError("Client not found", HttpStatus.NOT_FOUND);
     }
+    if (client.createdById !== userId) {
+      throw new AppError(
+        "You are not authorized to update this client",
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    return await clientRepository.updateClient(id, data);
+  }
 
-    async deleteClient(id: string, userId: string) {
-        const client = await clientRepository.findClientById(id);
-        if (!client) {
-            throw new AppError("Client not found", 404);
-        }
-        if (client.createdById !== userId) {
-            throw new AppError("You are not authorized to delete this client", 403);
-        }
-        return await clientRepository.deleteClient(id);
+  async deleteClient(id: string, userId: string) {
+    const client = await clientRepository.findClientById(id);
+    if (!client) {
+      throw new AppError("Client not found", HttpStatus.NOT_FOUND);
     }
+    if (client.createdById !== userId) {
+      throw new AppError(
+        "You are not authorized to delete this client",
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    return await clientRepository.deleteClient(id);
+  }
 }
 
 export const clientService = new ClientService();
