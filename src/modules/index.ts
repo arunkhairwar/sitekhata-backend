@@ -6,7 +6,7 @@ import siteRouter from "./site/site.router";
 
 const router = Router();
 
-router.use("/users", userRouter);
+router.use("/worker", userRouter);
 router.use("/auth", authRouter);
 router.use("/client", clientRouter);
 router.use("/site", siteRouter);

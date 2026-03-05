@@ -7,4 +7,5 @@ export const userRepository = {
   update: (id: string, data: any) =>
     prisma.user.update({ where: { id }, data }),
   delete: (id: string) => prisma.user.delete({ where: { id } }),
+  findAllWorkers: () => prisma.user.findMany({ where: { role: "WORKER" } }),
 };
