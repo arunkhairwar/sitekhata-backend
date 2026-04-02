@@ -50,6 +50,7 @@ model Client {
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdAt   DateTime @default(now())
   addressId   String?
+  updatedAt   DateTime @updatedAt()
   sites       Site[]
 }
 

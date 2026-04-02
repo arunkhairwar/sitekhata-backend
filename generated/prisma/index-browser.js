@@ -147,7 +147,8 @@ exports.Prisma.ClientScalarFieldEnum = {
   mobile: 'mobile',
   createdById: 'createdById',
   createdAt: 'createdAt',
-  addressId: 'addressId'
+  addressId: 'addressId',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SiteScalarFieldEnum = {
