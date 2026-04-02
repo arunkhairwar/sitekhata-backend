@@ -1193,13 +1193,11 @@ export namespace Prisma {
 
   export type AddressCountOutputType = {
     User: number
-    clients: number
     sites: number
   }
 
   export type AddressCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | AddressCountOutputTypeCountUserArgs
-    clients?: boolean | AddressCountOutputTypeCountClientsArgs
     sites?: boolean | AddressCountOutputTypeCountSitesArgs
   }
 
@@ -1219,13 +1217,6 @@ export namespace Prisma {
    */
   export type AddressCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
-  }
-
-  /**
-   * AddressCountOutputType without action
-   */
-  export type AddressCountOutputTypeCountClientsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ClientWhereInput
   }
 
   /**
@@ -2626,7 +2617,6 @@ export namespace Prisma {
     pincode?: boolean
     country?: boolean
     User?: boolean | Address$UserArgs<ExtArgs>
-    clients?: boolean | Address$clientsArgs<ExtArgs>
     sites?: boolean | Address$sitesArgs<ExtArgs>
     _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
@@ -2664,7 +2654,6 @@ export namespace Prisma {
   export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "addressLine1" | "addressLine2" | "city" | "state" | "pincode" | "country", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | Address$UserArgs<ExtArgs>
-    clients?: boolean | Address$clientsArgs<ExtArgs>
     sites?: boolean | Address$sitesArgs<ExtArgs>
     _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2675,7 +2664,6 @@ export namespace Prisma {
     name: "Address"
     objects: {
       User: Prisma.$UserPayload<ExtArgs>[]
-      clients: Prisma.$ClientPayload<ExtArgs>[]
       sites: Prisma.$SitePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3081,7 +3069,6 @@ export namespace Prisma {
   export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     User<T extends Address$UserArgs<ExtArgs> = {}>(args?: Subset<T, Address$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    clients<T extends Address$clientsArgs<ExtArgs> = {}>(args?: Subset<T, Address$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sites<T extends Address$sitesArgs<ExtArgs> = {}>(args?: Subset<T, Address$sitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3531,30 +3518,6 @@ export namespace Prisma {
   }
 
   /**
-   * Address.clients
-   */
-  export type Address$clientsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Client
-     */
-    select?: ClientSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Client
-     */
-    omit?: ClientOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ClientInclude<ExtArgs> | null
-    where?: ClientWhereInput
-    orderBy?: ClientOrderByWithRelationInput | ClientOrderByWithRelationInput[]
-    cursor?: ClientWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ClientScalarFieldEnum | ClientScalarFieldEnum[]
-  }
-
-  /**
    * Address.sites
    */
   export type Address$sitesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3613,7 +3576,6 @@ export namespace Prisma {
     mobile: string | null
     createdById: string | null
     createdAt: Date | null
-    addressId: string | null
     updatedAt: Date | null
   }
 
@@ -3623,7 +3585,6 @@ export namespace Prisma {
     mobile: string | null
     createdById: string | null
     createdAt: Date | null
-    addressId: string | null
     updatedAt: Date | null
   }
 
@@ -3633,7 +3594,6 @@ export namespace Prisma {
     mobile: number
     createdById: number
     createdAt: number
-    addressId: number
     updatedAt: number
     _all: number
   }
@@ -3645,7 +3605,6 @@ export namespace Prisma {
     mobile?: true
     createdById?: true
     createdAt?: true
-    addressId?: true
     updatedAt?: true
   }
 
@@ -3655,7 +3614,6 @@ export namespace Prisma {
     mobile?: true
     createdById?: true
     createdAt?: true
-    addressId?: true
     updatedAt?: true
   }
 
@@ -3665,7 +3623,6 @@ export namespace Prisma {
     mobile?: true
     createdById?: true
     createdAt?: true
-    addressId?: true
     updatedAt?: true
     _all?: true
   }
@@ -3748,7 +3705,6 @@ export namespace Prisma {
     mobile: string
     createdById: string
     createdAt: Date
-    addressId: string | null
     updatedAt: Date
     _count: ClientCountAggregateOutputType | null
     _min: ClientMinAggregateOutputType | null
@@ -3775,9 +3731,7 @@ export namespace Prisma {
     mobile?: boolean
     createdById?: boolean
     createdAt?: boolean
-    addressId?: boolean
     updatedAt?: boolean
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
     sites?: boolean | Client$sitesArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
@@ -3789,9 +3743,7 @@ export namespace Prisma {
     mobile?: boolean
     createdById?: boolean
     createdAt?: boolean
-    addressId?: boolean
     updatedAt?: boolean
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
 
@@ -3801,9 +3753,7 @@ export namespace Prisma {
     mobile?: boolean
     createdById?: boolean
     createdAt?: boolean
-    addressId?: boolean
     updatedAt?: boolean
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
 
@@ -3813,30 +3763,25 @@ export namespace Prisma {
     mobile?: boolean
     createdById?: boolean
     createdAt?: boolean
-    addressId?: boolean
     updatedAt?: boolean
   }
 
-  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "mobile" | "createdById" | "createdAt" | "addressId" | "updatedAt", ExtArgs["result"]["client"]>
+  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "mobile" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["client"]>
   export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
     sites?: boolean | Client$sitesArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClientIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ClientIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    address?: boolean | Client$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ClientPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Client"
     objects: {
-      address: Prisma.$AddressPayload<ExtArgs> | null
       createdBy: Prisma.$UserPayload<ExtArgs>
       sites: Prisma.$SitePayload<ExtArgs>[]
     }
@@ -3846,7 +3791,6 @@ export namespace Prisma {
       mobile: string
       createdById: string
       createdAt: Date
-      addressId: string | null
       updatedAt: Date
     }, ExtArgs["result"]["client"]>
     composites: {}
@@ -4242,7 +4186,6 @@ export namespace Prisma {
    */
   export interface Prisma__ClientClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    address<T extends Client$addressArgs<ExtArgs> = {}>(args?: Subset<T, Client$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     createdBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     sites<T extends Client$sitesArgs<ExtArgs> = {}>(args?: Subset<T, Client$sitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -4279,7 +4222,6 @@ export namespace Prisma {
     readonly mobile: FieldRef<"Client", 'String'>
     readonly createdById: FieldRef<"Client", 'String'>
     readonly createdAt: FieldRef<"Client", 'DateTime'>
-    readonly addressId: FieldRef<"Client", 'String'>
     readonly updatedAt: FieldRef<"Client", 'DateTime'>
   }
     
@@ -4674,25 +4616,6 @@ export namespace Prisma {
      * Limit how many Clients to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Client.address
-   */
-  export type Client$addressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Address
-     */
-    select?: AddressSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Address
-     */
-    omit?: AddressOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AddressInclude<ExtArgs> | null
-    where?: AddressWhereInput
   }
 
   /**
@@ -5904,7 +5827,6 @@ export namespace Prisma {
     mobile: 'mobile',
     createdById: 'createdById',
     createdAt: 'createdAt',
-    addressId: 'addressId',
     updatedAt: 'updatedAt'
   };
 
@@ -6100,7 +6022,6 @@ export namespace Prisma {
     pincode?: StringFilter<"Address"> | string
     country?: StringFilter<"Address"> | string
     User?: UserListRelationFilter
-    clients?: ClientListRelationFilter
     sites?: SiteListRelationFilter
   }
 
@@ -6113,7 +6034,6 @@ export namespace Prisma {
     pincode?: SortOrder
     country?: SortOrder
     User?: UserOrderByRelationAggregateInput
-    clients?: ClientOrderByRelationAggregateInput
     sites?: SiteOrderByRelationAggregateInput
   }
 
@@ -6129,7 +6049,6 @@ export namespace Prisma {
     pincode?: StringFilter<"Address"> | string
     country?: StringFilter<"Address"> | string
     User?: UserListRelationFilter
-    clients?: ClientListRelationFilter
     sites?: SiteListRelationFilter
   }, "id">
 
@@ -6168,9 +6087,7 @@ export namespace Prisma {
     mobile?: StringFilter<"Client"> | string
     createdById?: StringFilter<"Client"> | string
     createdAt?: DateTimeFilter<"Client"> | Date | string
-    addressId?: StringNullableFilter<"Client"> | string | null
     updatedAt?: DateTimeFilter<"Client"> | Date | string
-    address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     sites?: SiteListRelationFilter
   }
@@ -6181,9 +6098,7 @@ export namespace Prisma {
     mobile?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
-    addressId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
-    address?: AddressOrderByWithRelationInput
     createdBy?: UserOrderByWithRelationInput
     sites?: SiteOrderByRelationAggregateInput
   }
@@ -6197,9 +6112,7 @@ export namespace Prisma {
     name?: StringFilter<"Client"> | string
     createdById?: StringFilter<"Client"> | string
     createdAt?: DateTimeFilter<"Client"> | Date | string
-    addressId?: StringNullableFilter<"Client"> | string | null
     updatedAt?: DateTimeFilter<"Client"> | Date | string
-    address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     sites?: SiteListRelationFilter
   }, "id" | "mobile">
@@ -6210,7 +6123,6 @@ export namespace Prisma {
     mobile?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
-    addressId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     _count?: ClientCountOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
@@ -6226,7 +6138,6 @@ export namespace Prisma {
     mobile?: StringWithAggregatesFilter<"Client"> | string
     createdById?: StringWithAggregatesFilter<"Client"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Client"> | Date | string
-    addressId?: StringNullableWithAggregatesFilter<"Client"> | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"Client"> | Date | string
   }
 
@@ -6394,7 +6305,6 @@ export namespace Prisma {
     pincode: string
     country: string
     User?: UserCreateNestedManyWithoutAddressInput
-    clients?: ClientCreateNestedManyWithoutAddressInput
     sites?: SiteCreateNestedManyWithoutAddressInput
   }
 
@@ -6407,7 +6317,6 @@ export namespace Prisma {
     pincode: string
     country: string
     User?: UserUncheckedCreateNestedManyWithoutAddressInput
-    clients?: ClientUncheckedCreateNestedManyWithoutAddressInput
     sites?: SiteUncheckedCreateNestedManyWithoutAddressInput
   }
 
@@ -6420,7 +6329,6 @@ export namespace Prisma {
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     User?: UserUpdateManyWithoutAddressNestedInput
-    clients?: ClientUpdateManyWithoutAddressNestedInput
     sites?: SiteUpdateManyWithoutAddressNestedInput
   }
 
@@ -6433,7 +6341,6 @@ export namespace Prisma {
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     User?: UserUncheckedUpdateManyWithoutAddressNestedInput
-    clients?: ClientUncheckedUpdateManyWithoutAddressNestedInput
     sites?: SiteUncheckedUpdateManyWithoutAddressNestedInput
   }
 
@@ -6473,7 +6380,6 @@ export namespace Prisma {
     mobile: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    address?: AddressCreateNestedOneWithoutClientsInput
     createdBy: UserCreateNestedOneWithoutCreatedClientsInput
     sites?: SiteCreateNestedManyWithoutClientInput
   }
@@ -6484,7 +6390,6 @@ export namespace Prisma {
     mobile: string
     createdById: string
     createdAt?: Date | string
-    addressId?: string | null
     updatedAt?: Date | string
     sites?: SiteUncheckedCreateNestedManyWithoutClientInput
   }
@@ -6495,7 +6400,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    address?: AddressUpdateOneWithoutClientsNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCreatedClientsNestedInput
     sites?: SiteUpdateManyWithoutClientNestedInput
   }
@@ -6506,7 +6410,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sites?: SiteUncheckedUpdateManyWithoutClientNestedInput
   }
@@ -6517,7 +6420,6 @@ export namespace Prisma {
     mobile: string
     createdById: string
     createdAt?: Date | string
-    addressId?: string | null
     updatedAt?: Date | string
   }
 
@@ -6535,7 +6437,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6828,7 +6729,6 @@ export namespace Prisma {
     mobile?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
-    addressId?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -6838,7 +6738,6 @@ export namespace Prisma {
     mobile?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
-    addressId?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -6848,7 +6747,6 @@ export namespace Prisma {
     mobile?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
-    addressId?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -7010,13 +6908,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
-  export type ClientCreateNestedManyWithoutAddressInput = {
-    create?: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput> | ClientCreateWithoutAddressInput[] | ClientUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ClientCreateOrConnectWithoutAddressInput | ClientCreateOrConnectWithoutAddressInput[]
-    createMany?: ClientCreateManyAddressInputEnvelope
-    connect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-  }
-
   export type SiteCreateNestedManyWithoutAddressInput = {
     create?: XOR<SiteCreateWithoutAddressInput, SiteUncheckedCreateWithoutAddressInput> | SiteCreateWithoutAddressInput[] | SiteUncheckedCreateWithoutAddressInput[]
     connectOrCreate?: SiteCreateOrConnectWithoutAddressInput | SiteCreateOrConnectWithoutAddressInput[]
@@ -7029,13 +6920,6 @@ export namespace Prisma {
     connectOrCreate?: UserCreateOrConnectWithoutAddressInput | UserCreateOrConnectWithoutAddressInput[]
     createMany?: UserCreateManyAddressInputEnvelope
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type ClientUncheckedCreateNestedManyWithoutAddressInput = {
-    create?: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput> | ClientCreateWithoutAddressInput[] | ClientUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ClientCreateOrConnectWithoutAddressInput | ClientCreateOrConnectWithoutAddressInput[]
-    createMany?: ClientCreateManyAddressInputEnvelope
-    connect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
   }
 
   export type SiteUncheckedCreateNestedManyWithoutAddressInput = {
@@ -7057,20 +6941,6 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutAddressInput | UserUpdateWithWhereUniqueWithoutAddressInput[]
     updateMany?: UserUpdateManyWithWhereWithoutAddressInput | UserUpdateManyWithWhereWithoutAddressInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type ClientUpdateManyWithoutAddressNestedInput = {
-    create?: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput> | ClientCreateWithoutAddressInput[] | ClientUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ClientCreateOrConnectWithoutAddressInput | ClientCreateOrConnectWithoutAddressInput[]
-    upsert?: ClientUpsertWithWhereUniqueWithoutAddressInput | ClientUpsertWithWhereUniqueWithoutAddressInput[]
-    createMany?: ClientCreateManyAddressInputEnvelope
-    set?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    disconnect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    delete?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    connect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    update?: ClientUpdateWithWhereUniqueWithoutAddressInput | ClientUpdateWithWhereUniqueWithoutAddressInput[]
-    updateMany?: ClientUpdateManyWithWhereWithoutAddressInput | ClientUpdateManyWithWhereWithoutAddressInput[]
-    deleteMany?: ClientScalarWhereInput | ClientScalarWhereInput[]
   }
 
   export type SiteUpdateManyWithoutAddressNestedInput = {
@@ -7101,20 +6971,6 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
-  export type ClientUncheckedUpdateManyWithoutAddressNestedInput = {
-    create?: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput> | ClientCreateWithoutAddressInput[] | ClientUncheckedCreateWithoutAddressInput[]
-    connectOrCreate?: ClientCreateOrConnectWithoutAddressInput | ClientCreateOrConnectWithoutAddressInput[]
-    upsert?: ClientUpsertWithWhereUniqueWithoutAddressInput | ClientUpsertWithWhereUniqueWithoutAddressInput[]
-    createMany?: ClientCreateManyAddressInputEnvelope
-    set?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    disconnect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    delete?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    connect?: ClientWhereUniqueInput | ClientWhereUniqueInput[]
-    update?: ClientUpdateWithWhereUniqueWithoutAddressInput | ClientUpdateWithWhereUniqueWithoutAddressInput[]
-    updateMany?: ClientUpdateManyWithWhereWithoutAddressInput | ClientUpdateManyWithWhereWithoutAddressInput[]
-    deleteMany?: ClientScalarWhereInput | ClientScalarWhereInput[]
-  }
-
   export type SiteUncheckedUpdateManyWithoutAddressNestedInput = {
     create?: XOR<SiteCreateWithoutAddressInput, SiteUncheckedCreateWithoutAddressInput> | SiteCreateWithoutAddressInput[] | SiteUncheckedCreateWithoutAddressInput[]
     connectOrCreate?: SiteCreateOrConnectWithoutAddressInput | SiteCreateOrConnectWithoutAddressInput[]
@@ -7127,12 +6983,6 @@ export namespace Prisma {
     update?: SiteUpdateWithWhereUniqueWithoutAddressInput | SiteUpdateWithWhereUniqueWithoutAddressInput[]
     updateMany?: SiteUpdateManyWithWhereWithoutAddressInput | SiteUpdateManyWithWhereWithoutAddressInput[]
     deleteMany?: SiteScalarWhereInput | SiteScalarWhereInput[]
-  }
-
-  export type AddressCreateNestedOneWithoutClientsInput = {
-    create?: XOR<AddressCreateWithoutClientsInput, AddressUncheckedCreateWithoutClientsInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutClientsInput
-    connect?: AddressWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutCreatedClientsInput = {
@@ -7153,16 +7003,6 @@ export namespace Prisma {
     connectOrCreate?: SiteCreateOrConnectWithoutClientInput | SiteCreateOrConnectWithoutClientInput[]
     createMany?: SiteCreateManyClientInputEnvelope
     connect?: SiteWhereUniqueInput | SiteWhereUniqueInput[]
-  }
-
-  export type AddressUpdateOneWithoutClientsNestedInput = {
-    create?: XOR<AddressCreateWithoutClientsInput, AddressUncheckedCreateWithoutClientsInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutClientsInput
-    upsert?: AddressUpsertWithoutClientsInput
-    disconnect?: AddressWhereInput | boolean
-    delete?: AddressWhereInput | boolean
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutClientsInput, AddressUpdateWithoutClientsInput>, AddressUncheckedUpdateWithoutClientsInput>
   }
 
   export type UserUpdateOneRequiredWithoutCreatedClientsNestedInput = {
@@ -7379,7 +7219,6 @@ export namespace Prisma {
     state: string
     pincode: string
     country: string
-    clients?: ClientCreateNestedManyWithoutAddressInput
     sites?: SiteCreateNestedManyWithoutAddressInput
   }
 
@@ -7391,7 +7230,6 @@ export namespace Prisma {
     state: string
     pincode: string
     country: string
-    clients?: ClientUncheckedCreateNestedManyWithoutAddressInput
     sites?: SiteUncheckedCreateNestedManyWithoutAddressInput
   }
 
@@ -7406,7 +7244,6 @@ export namespace Prisma {
     mobile: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    address?: AddressCreateNestedOneWithoutClientsInput
     sites?: SiteCreateNestedManyWithoutClientInput
   }
 
@@ -7415,7 +7252,6 @@ export namespace Prisma {
     name: string
     mobile: string
     createdAt?: Date | string
-    addressId?: string | null
     updatedAt?: Date | string
     sites?: SiteUncheckedCreateNestedManyWithoutClientInput
   }
@@ -7477,7 +7313,6 @@ export namespace Prisma {
     state?: StringFieldUpdateOperationsInput | string
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    clients?: ClientUpdateManyWithoutAddressNestedInput
     sites?: SiteUpdateManyWithoutAddressNestedInput
   }
 
@@ -7489,7 +7324,6 @@ export namespace Prisma {
     state?: StringFieldUpdateOperationsInput | string
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    clients?: ClientUncheckedUpdateManyWithoutAddressNestedInput
     sites?: SiteUncheckedUpdateManyWithoutAddressNestedInput
   }
 
@@ -7518,7 +7352,6 @@ export namespace Prisma {
     mobile?: StringFilter<"Client"> | string
     createdById?: StringFilter<"Client"> | string
     createdAt?: DateTimeFilter<"Client"> | Date | string
-    addressId?: StringNullableFilter<"Client"> | string | null
     updatedAt?: DateTimeFilter<"Client"> | Date | string
   }
 
@@ -7585,36 +7418,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ClientCreateWithoutAddressInput = {
-    id?: string
-    name: string
-    mobile: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: UserCreateNestedOneWithoutCreatedClientsInput
-    sites?: SiteCreateNestedManyWithoutClientInput
-  }
-
-  export type ClientUncheckedCreateWithoutAddressInput = {
-    id?: string
-    name: string
-    mobile: string
-    createdById: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sites?: SiteUncheckedCreateNestedManyWithoutClientInput
-  }
-
-  export type ClientCreateOrConnectWithoutAddressInput = {
-    where: ClientWhereUniqueInput
-    create: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput>
-  }
-
-  export type ClientCreateManyAddressInputEnvelope = {
-    data: ClientCreateManyAddressInput | ClientCreateManyAddressInput[]
-    skipDuplicates?: boolean
-  }
-
   export type SiteCreateWithoutAddressInput = {
     id?: string
     name: string
@@ -7673,22 +7476,6 @@ export namespace Prisma {
     addressId?: StringNullableFilter<"User"> | string | null
   }
 
-  export type ClientUpsertWithWhereUniqueWithoutAddressInput = {
-    where: ClientWhereUniqueInput
-    update: XOR<ClientUpdateWithoutAddressInput, ClientUncheckedUpdateWithoutAddressInput>
-    create: XOR<ClientCreateWithoutAddressInput, ClientUncheckedCreateWithoutAddressInput>
-  }
-
-  export type ClientUpdateWithWhereUniqueWithoutAddressInput = {
-    where: ClientWhereUniqueInput
-    data: XOR<ClientUpdateWithoutAddressInput, ClientUncheckedUpdateWithoutAddressInput>
-  }
-
-  export type ClientUpdateManyWithWhereWithoutAddressInput = {
-    where: ClientScalarWhereInput
-    data: XOR<ClientUpdateManyMutationInput, ClientUncheckedUpdateManyWithoutAddressInput>
-  }
-
   export type SiteUpsertWithWhereUniqueWithoutAddressInput = {
     where: SiteWhereUniqueInput
     update: XOR<SiteUpdateWithoutAddressInput, SiteUncheckedUpdateWithoutAddressInput>
@@ -7703,35 +7490,6 @@ export namespace Prisma {
   export type SiteUpdateManyWithWhereWithoutAddressInput = {
     where: SiteScalarWhereInput
     data: XOR<SiteUpdateManyMutationInput, SiteUncheckedUpdateManyWithoutAddressInput>
-  }
-
-  export type AddressCreateWithoutClientsInput = {
-    id?: string
-    addressLine1?: string | null
-    addressLine2?: string | null
-    city: string
-    state: string
-    pincode: string
-    country: string
-    User?: UserCreateNestedManyWithoutAddressInput
-    sites?: SiteCreateNestedManyWithoutAddressInput
-  }
-
-  export type AddressUncheckedCreateWithoutClientsInput = {
-    id?: string
-    addressLine1?: string | null
-    addressLine2?: string | null
-    city: string
-    state: string
-    pincode: string
-    country: string
-    User?: UserUncheckedCreateNestedManyWithoutAddressInput
-    sites?: SiteUncheckedCreateNestedManyWithoutAddressInput
-  }
-
-  export type AddressCreateOrConnectWithoutClientsInput = {
-    where: AddressWhereUniqueInput
-    create: XOR<AddressCreateWithoutClientsInput, AddressUncheckedCreateWithoutClientsInput>
   }
 
   export type UserCreateWithoutCreatedClientsInput = {
@@ -7791,41 +7549,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AddressUpsertWithoutClientsInput = {
-    update: XOR<AddressUpdateWithoutClientsInput, AddressUncheckedUpdateWithoutClientsInput>
-    create: XOR<AddressCreateWithoutClientsInput, AddressUncheckedCreateWithoutClientsInput>
-    where?: AddressWhereInput
-  }
-
-  export type AddressUpdateToOneWithWhereWithoutClientsInput = {
-    where?: AddressWhereInput
-    data: XOR<AddressUpdateWithoutClientsInput, AddressUncheckedUpdateWithoutClientsInput>
-  }
-
-  export type AddressUpdateWithoutClientsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    pincode?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    User?: UserUpdateManyWithoutAddressNestedInput
-    sites?: SiteUpdateManyWithoutAddressNestedInput
-  }
-
-  export type AddressUncheckedUpdateWithoutClientsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    addressLine1?: NullableStringFieldUpdateOperationsInput | string | null
-    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    pincode?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    User?: UserUncheckedUpdateManyWithoutAddressNestedInput
-    sites?: SiteUncheckedUpdateManyWithoutAddressNestedInput
-  }
-
   export type UserUpsertWithoutCreatedClientsInput = {
     update: XOR<UserUpdateWithoutCreatedClientsInput, UserUncheckedUpdateWithoutCreatedClientsInput>
     create: XOR<UserCreateWithoutCreatedClientsInput, UserUncheckedCreateWithoutCreatedClientsInput>
@@ -7883,7 +7606,6 @@ export namespace Prisma {
     mobile: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    address?: AddressCreateNestedOneWithoutClientsInput
     createdBy: UserCreateNestedOneWithoutCreatedClientsInput
   }
 
@@ -7893,7 +7615,6 @@ export namespace Prisma {
     mobile: string
     createdById: string
     createdAt?: Date | string
-    addressId?: string | null
     updatedAt?: Date | string
   }
 
@@ -7911,7 +7632,6 @@ export namespace Prisma {
     pincode: string
     country: string
     User?: UserCreateNestedManyWithoutAddressInput
-    clients?: ClientCreateNestedManyWithoutAddressInput
   }
 
   export type AddressUncheckedCreateWithoutSitesInput = {
@@ -7923,7 +7643,6 @@ export namespace Prisma {
     pincode: string
     country: string
     User?: UserUncheckedCreateNestedManyWithoutAddressInput
-    clients?: ClientUncheckedCreateNestedManyWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutSitesInput = {
@@ -7977,7 +7696,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    address?: AddressUpdateOneWithoutClientsNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCreatedClientsNestedInput
   }
 
@@ -7987,7 +7705,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8011,7 +7728,6 @@ export namespace Prisma {
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     User?: UserUpdateManyWithoutAddressNestedInput
-    clients?: ClientUpdateManyWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateWithoutSitesInput = {
@@ -8023,7 +7739,6 @@ export namespace Prisma {
     pincode?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     User?: UserUncheckedUpdateManyWithoutAddressNestedInput
-    clients?: ClientUncheckedUpdateManyWithoutAddressNestedInput
   }
 
   export type UserUpsertWithoutCreatedSitesInput = {
@@ -8066,7 +7781,6 @@ export namespace Prisma {
     name: string
     mobile: string
     createdAt?: Date | string
-    addressId?: string | null
     updatedAt?: Date | string
   }
 
@@ -8085,7 +7799,6 @@ export namespace Prisma {
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    address?: AddressUpdateOneWithoutClientsNestedInput
     sites?: SiteUpdateManyWithoutClientNestedInput
   }
 
@@ -8094,7 +7807,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sites?: SiteUncheckedUpdateManyWithoutClientNestedInput
   }
@@ -8104,7 +7816,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8143,15 +7854,6 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
-  }
-
-  export type ClientCreateManyAddressInput = {
-    id?: string
-    name: string
-    mobile: string
-    createdById: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type SiteCreateManyAddressInput = {
@@ -8195,35 +7897,6 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ClientUpdateWithoutAddressInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    mobile?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: UserUpdateOneRequiredWithoutCreatedClientsNestedInput
-    sites?: SiteUpdateManyWithoutClientNestedInput
-  }
-
-  export type ClientUncheckedUpdateWithoutAddressInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    mobile?: StringFieldUpdateOperationsInput | string
-    createdById?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sites?: SiteUncheckedUpdateManyWithoutClientNestedInput
-  }
-
-  export type ClientUncheckedUpdateManyWithoutAddressInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    mobile?: StringFieldUpdateOperationsInput | string
-    createdById?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUpdateWithoutAddressInput = {

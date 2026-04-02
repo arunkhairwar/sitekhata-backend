@@ -35,7 +35,6 @@ model Address {
   pincode      String
   country      String
   User         User[]
-  clients      Client[]
   sites        Site[]
 }
 
@@ -45,11 +44,9 @@ model Client {
   id          String   @id @default(uuid())
   name        String
   mobile      String   @unique
-  address     Address? @relation(fields: [addressId], references: [id])
   createdById String
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdAt   DateTime @default(now())
-  addressId   String?
   updatedAt   DateTime @default(now()) @updatedAt()
   sites       Site[]
 }

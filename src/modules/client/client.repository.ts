@@ -7,24 +7,16 @@ import {
 
 class ClientRepository implements IClientRepository {
   async createClient(data: CreateClientInput, userId: string) {
-    const { address, ...clientData } = data;
-    delete (clientData as any).addressId;
     return await prisma.client.create({
       data: {
-        ...clientData,
+        ...data,
         createdBy: {
           connect: {
             id: userId,
           },
         },
-        address: address
-          ? {
-              create: address,
-            }
-          : undefined,
       },
       include: {
-        address: true,
         createdBy: {
           select: {
             id: true,
@@ -44,7 +36,6 @@ class ClientRepository implements IClientRepository {
         createdById: userId,
       },
       include: {
-        address: true,
         createdBy: {
           select: {
             id: true,
@@ -64,28 +55,13 @@ class ClientRepository implements IClientRepository {
   async findClientById(id: string) {
     return await prisma.client.findUnique({
       where: { id },
-      include: {
-        address: true,
-      },
     });
   }
 
   async updateClient(id: string, data: UpdateClientInput) {
-    const { address, ...clientData } = data;
-    delete (clientData as any).addressId;
     return await prisma.client.update({
       where: { id },
-      data: {
-        ...clientData,
-        address: address
-          ? {
-              update: address,
-            }
-          : undefined,
-      },
-      include: {
-        address: true,
-      },
+      data,
     });
   }
 
