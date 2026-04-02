@@ -1,13 +1,14 @@
 import { prisma } from "../../db/prisma";
 import {
-    CreateClientInput,
-    IClientRepository,
-    UpdateClientInput,
+  CreateClientInput,
+  IClientRepository,
+  UpdateClientInput,
 } from "./client.types";
 
 class ClientRepository implements IClientRepository {
   async createClient(data: CreateClientInput, userId: string) {
     const { address, ...clientData } = data;
+    delete (clientData as any).addressId;
     return await prisma.client.create({
       data: {
         ...clientData,
@@ -71,6 +72,7 @@ class ClientRepository implements IClientRepository {
 
   async updateClient(id: string, data: UpdateClientInput) {
     const { address, ...clientData } = data;
+    delete (clientData as any).addressId;
     return await prisma.client.update({
       where: { id },
       data: {
@@ -90,6 +92,12 @@ class ClientRepository implements IClientRepository {
   async deleteClient(id: string) {
     return await prisma.client.delete({
       where: { id },
+    });
+  }
+
+  async findClientByMobile(mobile: string) {
+    return await prisma.client.findUnique({
+      where: { mobile },
     });
   }
 }

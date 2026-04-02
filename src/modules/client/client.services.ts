@@ -5,6 +5,11 @@ import { HttpStatus } from "../../utils/HttpStatus";
 
 class ClientService {
   async createClient(data: CreateClientInput, userId: string) {
+    const foundExistingClient = await clientRepository.findClientByMobile(data.mobile);
+    if (foundExistingClient) {
+      throw new AppError("Client already exists with this mobile number", HttpStatus.BAD_REQUEST);
+    }
+
     const { createdById, ...client } = await clientRepository.createClient(
       data,
       userId,

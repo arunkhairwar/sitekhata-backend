@@ -6190,11 +6190,11 @@ export namespace Prisma {
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    mobile?: string
     AND?: ClientWhereInput | ClientWhereInput[]
     OR?: ClientWhereInput[]
     NOT?: ClientWhereInput | ClientWhereInput[]
     name?: StringFilter<"Client"> | string
-    mobile?: StringFilter<"Client"> | string
     createdById?: StringFilter<"Client"> | string
     createdAt?: DateTimeFilter<"Client"> | Date | string
     addressId?: StringNullableFilter<"Client"> | string | null
@@ -6202,7 +6202,7 @@ export namespace Prisma {
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     sites?: SiteListRelationFilter
-  }, "id">
+  }, "id" | "mobile">
 
   export type ClientOrderByWithAggregationInput = {
     id?: SortOrder
