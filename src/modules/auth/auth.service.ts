@@ -35,7 +35,7 @@ export const authService = {
       throw new Error("Invalid Password");
     }
     const token = jwt.sign({ userId: dbUser.id }, process.env.JWT_SECRET!, {
-      expiresIn: "1h",
+      expiresIn: "7d",
     });
     return { token };
   },
