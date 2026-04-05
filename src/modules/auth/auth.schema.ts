@@ -8,6 +8,11 @@ const passwordValidation = z
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/,
     "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character",
   );
+export const phoneValidation = z
+  .string()
+  .min(1, "Phone number is required")
+  .startsWith("+91", "Country code is required (e.g., +91)")
+  .regex(/^\+91[6-9]\d{9}$/, "Invalid phone number (must be 10 digits)");
 
 export const registerUserSchema = z.object({
   name: z
@@ -18,10 +23,7 @@ export const registerUserSchema = z.object({
     .email("Invalid email address"),
   password: passwordValidation,
   role: z.enum(["CONTRACTOR", "WORKER"]),
-  mobile: z
-    .string({ message: "Mobile number is required" })
-    .trim()
-    .regex(/^[6-9]\d{9}$/, "Invalid mobile number"),
+  mobile: phoneValidation,
 
   address: z
     .object({

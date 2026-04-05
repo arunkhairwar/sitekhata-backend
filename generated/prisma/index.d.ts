@@ -1280,6 +1280,7 @@ export namespace Prisma {
     role: $Enums.Role | null
     mobile: string | null
     createdAt: Date | null
+    updatedAt: Date | null
     addressId: string | null
   }
 
@@ -1291,6 +1292,7 @@ export namespace Prisma {
     role: $Enums.Role | null
     mobile: string | null
     createdAt: Date | null
+    updatedAt: Date | null
     addressId: string | null
   }
 
@@ -1302,6 +1304,7 @@ export namespace Prisma {
     role: number
     mobile: number
     createdAt: number
+    updatedAt: number
     addressId: number
     _all: number
   }
@@ -1315,6 +1318,7 @@ export namespace Prisma {
     role?: true
     mobile?: true
     createdAt?: true
+    updatedAt?: true
     addressId?: true
   }
 
@@ -1326,6 +1330,7 @@ export namespace Prisma {
     role?: true
     mobile?: true
     createdAt?: true
+    updatedAt?: true
     addressId?: true
   }
 
@@ -1337,6 +1342,7 @@ export namespace Prisma {
     role?: true
     mobile?: true
     createdAt?: true
+    updatedAt?: true
     addressId?: true
     _all?: true
   }
@@ -1421,6 +1427,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt: Date
+    updatedAt: Date
     addressId: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -1449,6 +1456,7 @@ export namespace Prisma {
     role?: boolean
     mobile?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     addressId?: boolean
     address?: boolean | User$addressArgs<ExtArgs>
     createdClients?: boolean | User$createdClientsArgs<ExtArgs>
@@ -1464,6 +1472,7 @@ export namespace Prisma {
     role?: boolean
     mobile?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     addressId?: boolean
     address?: boolean | User$addressArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1476,6 +1485,7 @@ export namespace Prisma {
     role?: boolean
     mobile?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     addressId?: boolean
     address?: boolean | User$addressArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1488,10 +1498,11 @@ export namespace Prisma {
     role?: boolean
     mobile?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     addressId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "mobile" | "createdAt" | "addressId", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "mobile" | "createdAt" | "updatedAt" | "addressId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     address?: boolean | User$addressArgs<ExtArgs>
     createdClients?: boolean | User$createdClientsArgs<ExtArgs>
@@ -1520,6 +1531,7 @@ export namespace Prisma {
       role: $Enums.Role
       mobile: string
       createdAt: Date
+      updatedAt: Date
       addressId: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1954,6 +1966,7 @@ export namespace Prisma {
     readonly role: FieldRef<"User", 'Role'>
     readonly mobile: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly addressId: FieldRef<"User", 'String'>
   }
     
@@ -4679,6 +4692,7 @@ export namespace Prisma {
     addressId: string | null
     createdById: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SiteMaxAggregateOutputType = {
@@ -4689,6 +4703,7 @@ export namespace Prisma {
     addressId: string | null
     createdById: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SiteCountAggregateOutputType = {
@@ -4699,6 +4714,7 @@ export namespace Prisma {
     addressId: number
     createdById: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -4711,6 +4727,7 @@ export namespace Prisma {
     addressId?: true
     createdById?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type SiteMaxAggregateInputType = {
@@ -4721,6 +4738,7 @@ export namespace Prisma {
     addressId?: true
     createdById?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type SiteCountAggregateInputType = {
@@ -4731,6 +4749,7 @@ export namespace Prisma {
     addressId?: true
     createdById?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -4814,6 +4833,7 @@ export namespace Prisma {
     addressId: string | null
     createdById: string
     createdAt: Date
+    updatedAt: Date
     _count: SiteCountAggregateOutputType | null
     _min: SiteMinAggregateOutputType | null
     _max: SiteMaxAggregateOutputType | null
@@ -4841,6 +4861,7 @@ export namespace Prisma {
     addressId?: boolean
     createdById?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
     address?: boolean | Site$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
@@ -4854,6 +4875,7 @@ export namespace Prisma {
     addressId?: boolean
     createdById?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
     address?: boolean | Site$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
@@ -4867,6 +4889,7 @@ export namespace Prisma {
     addressId?: boolean
     createdById?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
     address?: boolean | Site$addressArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
@@ -4880,9 +4903,10 @@ export namespace Prisma {
     addressId?: boolean
     createdById?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SiteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "clientId" | "addressId" | "createdById" | "createdAt", ExtArgs["result"]["site"]>
+  export type SiteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "clientId" | "addressId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["site"]>
   export type SiteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     address?: boolean | Site$addressArgs<ExtArgs>
@@ -4914,6 +4938,7 @@ export namespace Prisma {
       addressId: string | null
       createdById: string
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["site"]>
     composites: {}
   }
@@ -5347,6 +5372,7 @@ export namespace Prisma {
     readonly addressId: FieldRef<"Site", 'String'>
     readonly createdById: FieldRef<"Site", 'String'>
     readonly createdAt: FieldRef<"Site", 'DateTime'>
+    readonly updatedAt: FieldRef<"Site", 'DateTime'>
   }
     
 
@@ -5802,6 +5828,7 @@ export namespace Prisma {
     role: 'role',
     mobile: 'mobile',
     createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     addressId: 'addressId'
   };
 
@@ -5840,7 +5867,8 @@ export namespace Prisma {
     clientId: 'clientId',
     addressId: 'addressId',
     createdById: 'createdById',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
@@ -5945,6 +5973,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     mobile?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     addressId?: StringNullableFilter<"User"> | string | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdClients?: ClientListRelationFilter
@@ -5959,6 +5988,7 @@ export namespace Prisma {
     role?: SortOrder
     mobile?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     addressId?: SortOrderInput | SortOrder
     address?: AddressOrderByWithRelationInput
     createdClients?: ClientOrderByRelationAggregateInput
@@ -5976,6 +6006,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     addressId?: StringNullableFilter<"User"> | string | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdClients?: ClientListRelationFilter
@@ -5990,6 +6021,7 @@ export namespace Prisma {
     role?: SortOrder
     mobile?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     addressId?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -6007,6 +6039,7 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     mobile?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     addressId?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
@@ -6152,6 +6185,7 @@ export namespace Prisma {
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
     createdAt?: DateTimeFilter<"Site"> | Date | string
+    updatedAt?: DateTimeFilter<"Site"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -6165,6 +6199,7 @@ export namespace Prisma {
     addressId?: SortOrderInput | SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     client?: ClientOrderByWithRelationInput
     address?: AddressOrderByWithRelationInput
     createdBy?: UserOrderByWithRelationInput
@@ -6181,6 +6216,7 @@ export namespace Prisma {
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
     createdAt?: DateTimeFilter<"Site"> | Date | string
+    updatedAt?: DateTimeFilter<"Site"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -6194,6 +6230,7 @@ export namespace Prisma {
     addressId?: SortOrderInput | SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SiteCountOrderByAggregateInput
     _max?: SiteMaxOrderByAggregateInput
     _min?: SiteMinOrderByAggregateInput
@@ -6210,6 +6247,7 @@ export namespace Prisma {
     addressId?: StringNullableWithAggregatesFilter<"Site"> | string | null
     createdById?: StringWithAggregatesFilter<"Site"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Site"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Site"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -6220,6 +6258,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     address?: AddressCreateNestedOneWithoutUserInput
     createdClients?: ClientCreateNestedManyWithoutCreatedByInput
     createdSites?: SiteCreateNestedManyWithoutCreatedByInput
@@ -6233,6 +6272,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     addressId?: string | null
     createdClients?: ClientUncheckedCreateNestedManyWithoutCreatedByInput
     createdSites?: SiteUncheckedCreateNestedManyWithoutCreatedByInput
@@ -6246,6 +6286,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutUserNestedInput
     createdClients?: ClientUpdateManyWithoutCreatedByNestedInput
     createdSites?: SiteUpdateManyWithoutCreatedByNestedInput
@@ -6259,6 +6300,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdClients?: ClientUncheckedUpdateManyWithoutCreatedByNestedInput
     createdSites?: SiteUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6272,6 +6314,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     addressId?: string | null
   }
 
@@ -6283,6 +6326,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -6293,6 +6337,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -6445,6 +6490,7 @@ export namespace Prisma {
     name: string
     image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
     address?: AddressCreateNestedOneWithoutSitesInput
     createdBy: UserCreateNestedOneWithoutCreatedSitesInput
@@ -6458,6 +6504,7 @@ export namespace Prisma {
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteUpdateInput = {
@@ -6465,6 +6512,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
     address?: AddressUpdateOneWithoutSitesNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCreatedSitesNestedInput
@@ -6478,6 +6526,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteCreateManyInput = {
@@ -6488,6 +6537,7 @@ export namespace Prisma {
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteUpdateManyMutationInput = {
@@ -6495,6 +6545,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUncheckedUpdateManyInput = {
@@ -6505,6 +6556,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6593,6 +6645,7 @@ export namespace Prisma {
     role?: SortOrder
     mobile?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     addressId?: SortOrder
   }
 
@@ -6604,6 +6657,7 @@ export namespace Prisma {
     role?: SortOrder
     mobile?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     addressId?: SortOrder
   }
 
@@ -6615,6 +6669,7 @@ export namespace Prisma {
     role?: SortOrder
     mobile?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     addressId?: SortOrder
   }
 
@@ -6763,6 +6818,7 @@ export namespace Prisma {
     addressId?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SiteMaxOrderByAggregateInput = {
@@ -6773,6 +6829,7 @@ export namespace Prisma {
     addressId?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SiteMinOrderByAggregateInput = {
@@ -6783,6 +6840,7 @@ export namespace Prisma {
     addressId?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AddressCreateNestedOneWithoutUserInput = {
@@ -7271,6 +7329,7 @@ export namespace Prisma {
     name: string
     image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
     address?: AddressCreateNestedOneWithoutSitesInput
   }
@@ -7282,6 +7341,7 @@ export namespace Prisma {
     clientId: string
     addressId?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteCreateOrConnectWithoutCreatedByInput = {
@@ -7382,6 +7442,7 @@ export namespace Prisma {
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
     createdAt?: DateTimeFilter<"Site"> | Date | string
+    updatedAt?: DateTimeFilter<"Site"> | Date | string
   }
 
   export type UserCreateWithoutAddressInput = {
@@ -7392,6 +7453,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     createdClients?: ClientCreateNestedManyWithoutCreatedByInput
     createdSites?: SiteCreateNestedManyWithoutCreatedByInput
   }
@@ -7404,6 +7466,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     createdClients?: ClientUncheckedCreateNestedManyWithoutCreatedByInput
     createdSites?: SiteUncheckedCreateNestedManyWithoutCreatedByInput
   }
@@ -7423,6 +7486,7 @@ export namespace Prisma {
     name: string
     image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
     createdBy: UserCreateNestedOneWithoutCreatedSitesInput
   }
@@ -7434,6 +7498,7 @@ export namespace Prisma {
     clientId: string
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteCreateOrConnectWithoutAddressInput = {
@@ -7473,6 +7538,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     mobile?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     addressId?: StringNullableFilter<"User"> | string | null
   }
 
@@ -7500,6 +7566,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     address?: AddressCreateNestedOneWithoutUserInput
     createdSites?: SiteCreateNestedManyWithoutCreatedByInput
   }
@@ -7512,6 +7579,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     addressId?: string | null
     createdSites?: SiteUncheckedCreateNestedManyWithoutCreatedByInput
   }
@@ -7526,6 +7594,7 @@ export namespace Prisma {
     name: string
     image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     address?: AddressCreateNestedOneWithoutSitesInput
     createdBy: UserCreateNestedOneWithoutCreatedSitesInput
   }
@@ -7537,6 +7606,7 @@ export namespace Prisma {
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteCreateOrConnectWithoutClientInput = {
@@ -7568,6 +7638,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutUserNestedInput
     createdSites?: SiteUpdateManyWithoutCreatedByNestedInput
   }
@@ -7580,6 +7651,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdSites?: SiteUncheckedUpdateManyWithoutCreatedByNestedInput
   }
@@ -7658,6 +7730,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     address?: AddressCreateNestedOneWithoutUserInput
     createdClients?: ClientCreateNestedManyWithoutCreatedByInput
   }
@@ -7670,6 +7743,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     addressId?: string | null
     createdClients?: ClientUncheckedCreateNestedManyWithoutCreatedByInput
   }
@@ -7760,6 +7834,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutUserNestedInput
     createdClients?: ClientUpdateManyWithoutCreatedByNestedInput
   }
@@ -7772,6 +7847,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdClients?: ClientUncheckedUpdateManyWithoutCreatedByNestedInput
   }
@@ -7791,6 +7867,7 @@ export namespace Prisma {
     clientId: string
     addressId?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClientUpdateWithoutCreatedByInput = {
@@ -7824,6 +7901,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
     address?: AddressUpdateOneWithoutSitesNestedInput
   }
@@ -7835,6 +7913,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUncheckedUpdateManyWithoutCreatedByInput = {
@@ -7844,6 +7923,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyAddressInput = {
@@ -7854,6 +7934,7 @@ export namespace Prisma {
     role: $Enums.Role
     mobile: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteCreateManyAddressInput = {
@@ -7863,6 +7944,7 @@ export namespace Prisma {
     clientId: string
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateWithoutAddressInput = {
@@ -7873,6 +7955,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdClients?: ClientUpdateManyWithoutCreatedByNestedInput
     createdSites?: SiteUpdateManyWithoutCreatedByNestedInput
   }
@@ -7885,6 +7968,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdClients?: ClientUncheckedUpdateManyWithoutCreatedByNestedInput
     createdSites?: SiteUncheckedUpdateManyWithoutCreatedByNestedInput
   }
@@ -7897,6 +7981,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     mobile?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUpdateWithoutAddressInput = {
@@ -7904,6 +7989,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCreatedSitesNestedInput
   }
@@ -7915,6 +8001,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUncheckedUpdateManyWithoutAddressInput = {
@@ -7924,6 +8011,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteCreateManyClientInput = {
@@ -7933,6 +8021,7 @@ export namespace Prisma {
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SiteUpdateWithoutClientInput = {
@@ -7940,6 +8029,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutSitesNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCreatedSitesNestedInput
   }
@@ -7951,6 +8041,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SiteUncheckedUpdateManyWithoutClientInput = {
@@ -7960,6 +8051,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

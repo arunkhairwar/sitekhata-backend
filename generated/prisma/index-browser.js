@@ -128,6 +128,7 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role',
   mobile: 'mobile',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   addressId: 'addressId'
 };
 
@@ -157,7 +158,8 @@ exports.Prisma.SiteScalarFieldEnum = {
   clientId: 'clientId',
   addressId: 'addressId',
   createdById: 'createdById',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
