@@ -36,6 +36,21 @@ class SiteRepository implements ISiteRepository {
       where: {
         createdById: userId,
       },
+      select: {
+        id: true,
+        name: true,
+        image: true,
+        client: {
+          select: {
+            id: true,
+            name: true,
+            mobile: true,
+          },
+        },
+        address: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   }
 

@@ -4680,14 +4680,27 @@ export namespace Prisma {
 
   export type AggregateSite = {
     _count: SiteCountAggregateOutputType | null
+    _avg: SiteAvgAggregateOutputType | null
+    _sum: SiteSumAggregateOutputType | null
     _min: SiteMinAggregateOutputType | null
     _max: SiteMaxAggregateOutputType | null
+  }
+
+  export type SiteAvgAggregateOutputType = {
+    estimatedBudget: number | null
+  }
+
+  export type SiteSumAggregateOutputType = {
+    estimatedBudget: number | null
   }
 
   export type SiteMinAggregateOutputType = {
     id: string | null
     name: string | null
     image: string | null
+    estimatedBudget: number | null
+    startDate: Date | null
+    expectedEndDate: Date | null
     clientId: string | null
     addressId: string | null
     createdById: string | null
@@ -4699,6 +4712,9 @@ export namespace Prisma {
     id: string | null
     name: string | null
     image: string | null
+    estimatedBudget: number | null
+    startDate: Date | null
+    expectedEndDate: Date | null
     clientId: string | null
     addressId: string | null
     createdById: string | null
@@ -4710,6 +4726,9 @@ export namespace Prisma {
     id: number
     name: number
     image: number
+    estimatedBudget: number
+    startDate: number
+    expectedEndDate: number
     clientId: number
     addressId: number
     createdById: number
@@ -4719,10 +4738,21 @@ export namespace Prisma {
   }
 
 
+  export type SiteAvgAggregateInputType = {
+    estimatedBudget?: true
+  }
+
+  export type SiteSumAggregateInputType = {
+    estimatedBudget?: true
+  }
+
   export type SiteMinAggregateInputType = {
     id?: true
     name?: true
     image?: true
+    estimatedBudget?: true
+    startDate?: true
+    expectedEndDate?: true
     clientId?: true
     addressId?: true
     createdById?: true
@@ -4734,6 +4764,9 @@ export namespace Prisma {
     id?: true
     name?: true
     image?: true
+    estimatedBudget?: true
+    startDate?: true
+    expectedEndDate?: true
     clientId?: true
     addressId?: true
     createdById?: true
@@ -4745,6 +4778,9 @@ export namespace Prisma {
     id?: true
     name?: true
     image?: true
+    estimatedBudget?: true
+    startDate?: true
+    expectedEndDate?: true
     clientId?: true
     addressId?: true
     createdById?: true
@@ -4791,6 +4827,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: SiteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SiteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: SiteMinAggregateInputType
@@ -4821,6 +4869,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: SiteCountAggregateInputType | true
+    _avg?: SiteAvgAggregateInputType
+    _sum?: SiteSumAggregateInputType
     _min?: SiteMinAggregateInputType
     _max?: SiteMaxAggregateInputType
   }
@@ -4829,12 +4879,17 @@ export namespace Prisma {
     id: string
     name: string
     image: string | null
+    estimatedBudget: number | null
+    startDate: Date | null
+    expectedEndDate: Date | null
     clientId: string
     addressId: string | null
     createdById: string
     createdAt: Date
     updatedAt: Date
     _count: SiteCountAggregateOutputType | null
+    _avg: SiteAvgAggregateOutputType | null
+    _sum: SiteSumAggregateOutputType | null
     _min: SiteMinAggregateOutputType | null
     _max: SiteMaxAggregateOutputType | null
   }
@@ -4857,6 +4912,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     image?: boolean
+    estimatedBudget?: boolean
+    startDate?: boolean
+    expectedEndDate?: boolean
     clientId?: boolean
     addressId?: boolean
     createdById?: boolean
@@ -4871,6 +4929,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     image?: boolean
+    estimatedBudget?: boolean
+    startDate?: boolean
+    expectedEndDate?: boolean
     clientId?: boolean
     addressId?: boolean
     createdById?: boolean
@@ -4885,6 +4946,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     image?: boolean
+    estimatedBudget?: boolean
+    startDate?: boolean
+    expectedEndDate?: boolean
     clientId?: boolean
     addressId?: boolean
     createdById?: boolean
@@ -4899,6 +4963,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     image?: boolean
+    estimatedBudget?: boolean
+    startDate?: boolean
+    expectedEndDate?: boolean
     clientId?: boolean
     addressId?: boolean
     createdById?: boolean
@@ -4906,7 +4973,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SiteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "clientId" | "addressId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["site"]>
+  export type SiteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "estimatedBudget" | "startDate" | "expectedEndDate" | "clientId" | "addressId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["site"]>
   export type SiteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     address?: boolean | Site$addressArgs<ExtArgs>
@@ -4934,6 +5001,9 @@ export namespace Prisma {
       id: string
       name: string
       image: string | null
+      estimatedBudget: number | null
+      startDate: Date | null
+      expectedEndDate: Date | null
       clientId: string
       addressId: string | null
       createdById: string
@@ -5368,6 +5438,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Site", 'String'>
     readonly name: FieldRef<"Site", 'String'>
     readonly image: FieldRef<"Site", 'String'>
+    readonly estimatedBudget: FieldRef<"Site", 'Float'>
+    readonly startDate: FieldRef<"Site", 'DateTime'>
+    readonly expectedEndDate: FieldRef<"Site", 'DateTime'>
     readonly clientId: FieldRef<"Site", 'String'>
     readonly addressId: FieldRef<"Site", 'String'>
     readonly createdById: FieldRef<"Site", 'String'>
@@ -5864,6 +5937,9 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     image: 'image',
+    estimatedBudget: 'estimatedBudget',
+    startDate: 'startDate',
+    expectedEndDate: 'expectedEndDate',
     clientId: 'clientId',
     addressId: 'addressId',
     createdById: 'createdById',
@@ -5942,6 +6018,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -6181,6 +6271,9 @@ export namespace Prisma {
     id?: StringFilter<"Site"> | string
     name?: StringFilter<"Site"> | string
     image?: StringNullableFilter<"Site"> | string | null
+    estimatedBudget?: FloatNullableFilter<"Site"> | number | null
+    startDate?: DateTimeNullableFilter<"Site"> | Date | string | null
+    expectedEndDate?: DateTimeNullableFilter<"Site"> | Date | string | null
     clientId?: StringFilter<"Site"> | string
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
@@ -6195,6 +6288,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     image?: SortOrderInput | SortOrder
+    estimatedBudget?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    expectedEndDate?: SortOrderInput | SortOrder
     clientId?: SortOrder
     addressId?: SortOrderInput | SortOrder
     createdById?: SortOrder
@@ -6212,6 +6308,9 @@ export namespace Prisma {
     NOT?: SiteWhereInput | SiteWhereInput[]
     name?: StringFilter<"Site"> | string
     image?: StringNullableFilter<"Site"> | string | null
+    estimatedBudget?: FloatNullableFilter<"Site"> | number | null
+    startDate?: DateTimeNullableFilter<"Site"> | Date | string | null
+    expectedEndDate?: DateTimeNullableFilter<"Site"> | Date | string | null
     clientId?: StringFilter<"Site"> | string
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
@@ -6226,14 +6325,19 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     image?: SortOrderInput | SortOrder
+    estimatedBudget?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    expectedEndDate?: SortOrderInput | SortOrder
     clientId?: SortOrder
     addressId?: SortOrderInput | SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SiteCountOrderByAggregateInput
+    _avg?: SiteAvgOrderByAggregateInput
     _max?: SiteMaxOrderByAggregateInput
     _min?: SiteMinOrderByAggregateInput
+    _sum?: SiteSumOrderByAggregateInput
   }
 
   export type SiteScalarWhereWithAggregatesInput = {
@@ -6243,6 +6347,9 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Site"> | string
     name?: StringWithAggregatesFilter<"Site"> | string
     image?: StringNullableWithAggregatesFilter<"Site"> | string | null
+    estimatedBudget?: FloatNullableWithAggregatesFilter<"Site"> | number | null
+    startDate?: DateTimeNullableWithAggregatesFilter<"Site"> | Date | string | null
+    expectedEndDate?: DateTimeNullableWithAggregatesFilter<"Site"> | Date | string | null
     clientId?: StringWithAggregatesFilter<"Site"> | string
     addressId?: StringNullableWithAggregatesFilter<"Site"> | string | null
     createdById?: StringWithAggregatesFilter<"Site"> | string
@@ -6489,6 +6596,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
@@ -6500,6 +6610,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     addressId?: string | null
     createdById: string
@@ -6511,6 +6624,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
@@ -6522,6 +6638,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
@@ -6533,6 +6652,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     addressId?: string | null
     createdById: string
@@ -6544,6 +6666,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6552,6 +6677,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
@@ -6805,6 +6933,28 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ClientScalarRelationFilter = {
     is?: ClientWhereInput
     isNot?: ClientWhereInput
@@ -6814,6 +6964,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     image?: SortOrder
+    estimatedBudget?: SortOrder
+    startDate?: SortOrder
+    expectedEndDate?: SortOrder
     clientId?: SortOrder
     addressId?: SortOrder
     createdById?: SortOrder
@@ -6821,10 +6974,17 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type SiteAvgOrderByAggregateInput = {
+    estimatedBudget?: SortOrder
+  }
+
   export type SiteMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     image?: SortOrder
+    estimatedBudget?: SortOrder
+    startDate?: SortOrder
+    expectedEndDate?: SortOrder
     clientId?: SortOrder
     addressId?: SortOrder
     createdById?: SortOrder
@@ -6836,11 +6996,48 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     image?: SortOrder
+    estimatedBudget?: SortOrder
+    startDate?: SortOrder
+    expectedEndDate?: SortOrder
     clientId?: SortOrder
     addressId?: SortOrder
     createdById?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type SiteSumOrderByAggregateInput = {
+    estimatedBudget?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type AddressCreateNestedOneWithoutUserInput = {
@@ -7117,6 +7314,18 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type ClientUpdateOneRequiredWithoutSitesNestedInput = {
     create?: XOR<ClientCreateWithoutSitesInput, ClientUncheckedCreateWithoutSitesInput>
     connectOrCreate?: ClientCreateOrConnectWithoutSitesInput
@@ -7269,6 +7478,58 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type AddressCreateWithoutUserInput = {
     id?: string
     addressLine1?: string | null
@@ -7328,6 +7589,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
@@ -7338,6 +7602,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     addressId?: string | null
     createdAt?: Date | string
@@ -7438,6 +7705,9 @@ export namespace Prisma {
     id?: StringFilter<"Site"> | string
     name?: StringFilter<"Site"> | string
     image?: StringNullableFilter<"Site"> | string | null
+    estimatedBudget?: FloatNullableFilter<"Site"> | number | null
+    startDate?: DateTimeNullableFilter<"Site"> | Date | string | null
+    expectedEndDate?: DateTimeNullableFilter<"Site"> | Date | string | null
     clientId?: StringFilter<"Site"> | string
     addressId?: StringNullableFilter<"Site"> | string | null
     createdById?: StringFilter<"Site"> | string
@@ -7485,6 +7755,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutSitesInput
@@ -7495,6 +7768,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     createdById: string
     createdAt?: Date | string
@@ -7593,6 +7869,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     address?: AddressCreateNestedOneWithoutSitesInput
@@ -7603,6 +7882,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
@@ -7864,6 +8146,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     addressId?: string | null
     createdAt?: Date | string
@@ -7900,6 +8185,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
@@ -7910,6 +8198,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7920,6 +8211,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7941,6 +8235,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     clientId: string
     createdById: string
     createdAt?: Date | string
@@ -7988,6 +8285,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutSitesNestedInput
@@ -7998,6 +8298,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8008,6 +8311,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     clientId?: StringFieldUpdateOperationsInput | string
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8018,6 +8324,9 @@ export namespace Prisma {
     id?: string
     name: string
     image?: string | null
+    estimatedBudget?: number | null
+    startDate?: Date | string | null
+    expectedEndDate?: Date | string | null
     addressId?: string | null
     createdById: string
     createdAt?: Date | string
@@ -8028,6 +8337,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutSitesNestedInput
@@ -8038,6 +8350,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8048,6 +8363,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expectedEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

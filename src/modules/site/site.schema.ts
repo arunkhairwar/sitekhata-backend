@@ -6,6 +6,9 @@ export const createSiteSchema = z.object({
     .min(3, "Name must be at least 3 characters"),
   image: z.string().optional(),
   client: z.string("Client ID is required"),
+  estimatedBudget: z.number().optional(),
+  startDate: z.string().optional(),
+  expectedEndDate: z.string().optional(),
   address: z
     .object({
       addressLine1: z.string().optional(),

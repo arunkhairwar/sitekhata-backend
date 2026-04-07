@@ -56,6 +56,9 @@ model Site {
   id          String   @id @default(uuid())
   name        String
   image       String?
+  estimatedBudget Float?
+  startDate   DateTime?
+  expectedEndDate DateTime?
   clientId    String
   client      Client   @relation(fields: [clientId], references: [id])
   address     Address? @relation(fields: [addressId], references: [id])
