@@ -26,6 +26,9 @@ class SiteRepository implements ISiteRepository {
           clientId: data.client,
           createdById: userId,
           addressId: addressId,
+          estimatedBudget: data.estimatedBudget,
+          startDate: data.startDate,
+          expectedEndDate: data.expectedEndDate,
         },
       });
     });
@@ -40,6 +43,9 @@ class SiteRepository implements ISiteRepository {
         id: true,
         name: true,
         image: true,
+        estimatedBudget: true,
+        startDate: true,
+        expectedEndDate: true,
         client: {
           select: {
             id: true,
