@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
 import { AppError } from "../utils/AppError";
 import { errorResponse } from "../utils/apiResponse";
+import logger from "../lib/logger";
 
 export const errorHandler = (
   err: any,
@@ -32,6 +33,23 @@ export const errorHandler = (
     );
   } else if (err instanceof Error) {
     message = err.message;
+  }
+
+  // ── Log the error through Winston ─────────────────────────────────────
+  const logMeta = {
+    statusCode,
+    method: req.method,
+    url: req.originalUrl,
+    ip: req.ip,
+    ...(data && { validationErrors: data }),
+  };
+
+  if (statusCode >= 500) {
+    // Server errors → error level (logged to error.log + combined.log)
+    logger.error(message, { ...logMeta, stack: err.stack });
+  } else {
+    // Client errors (4xx) → warn level
+    logger.warn(message, logMeta);
   }
 
   res
