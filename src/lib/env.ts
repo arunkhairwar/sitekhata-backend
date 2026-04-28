@@ -28,6 +28,21 @@ const envSchema = z.object({
     .describe("Application environment"),
 });
 
+// ─── Sensitive-field patterns (auto-masked in logs) ────────────────────────
+const SENSITIVE_PATTERNS = [
+  "SECRET",
+  "PASSWORD",
+  "TOKEN",
+  "KEY",
+  "URL",
+  "CREDENTIAL",
+];
+
+function isSensitive(name: string): boolean {
+  const upper = name.toUpperCase();
+  return SENSITIVE_PATTERNS.some((p) => upper.includes(p));
+}
+
 // ─── Exported type ─────────────────────────────────────────────────────────
 export type Env = z.infer<typeof envSchema>;
 
@@ -58,4 +73,28 @@ export function validateEnv(): Env {
   }
 
   return result.data;
+}
+
+// ─── Auto-generate env summary lines from schema ───────────────────────────
+const GREEN = "\x1b[32m";
+const RESET = "\x1b[0m";
+const MASKED = `${GREEN}***MASKED***${RESET}`;
+
+/**
+ * Returns an array of formatted `"FIELD_NAME  : value"` strings,
+ * derived automatically from the Zod schema keys.
+ * Sensitive fields are masked; all others show their actual value.
+ *
+ * Adding a new field to `envSchema` is all that's needed —
+ * it will appear in the startup log automatically.
+ */
+export function getEnvSummary(env: Env): string[] {
+  const keys = Object.keys(envSchema.shape) as (keyof Env)[];
+  const maxLen = Math.max(...keys.map((k) => String(k).length));
+
+  return keys.map((key) => {
+    const label = String(key).padEnd(maxLen);
+    const value = isSensitive(String(key)) ? MASKED : String(env[key]);
+    return `${label} : ${value}`;
+  });
 }

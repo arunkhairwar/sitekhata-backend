@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import { getEnvSummary, validateEnv } from "./lib/env";
 import logger from "./lib/logger";
-import { validateEnv } from "./lib/env";
 
 // ── Validate environment before anything else ───────────────────────────────
 let env;
@@ -21,8 +21,12 @@ const ip = getIPAddress();
 // ── Start server ────────────────────────────────────────────────────────────
 app.listen(env.PORT, () => {
   logger.info("Server started successfully");
-  logger.info(`Address     : http://${ip}:${env.PORT}`);
-  logger.info(`Environment : ${env.NODE_ENV}`);
+  logger.info(`Address      : http://${ip}:${env.PORT}`);
+
+  // Auto-log every field declared in the Zod env schema
+  for (const line of getEnvSummary(env)) {
+    logger.info(line);
+  }
 });
 
 // ── Crash safety net (logged to logs/exceptions.log & logs/rejections.log) ──
