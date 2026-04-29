@@ -1,36 +1,7 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-}
-
-datasource db {
-  provider = "postgresql"
-}
-
-model User {
-  id             String   @id @default(uuid())
-  name           String
-  email          String   @unique
-  password       String
-  role           Role
-  mobile         String   @unique
-  address        Address? @relation(fields: [addressId], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now()) @updatedAt()
-  addressId      String?
-  createdClients Client[]
-  createdSites   Site[]
-}
-
-enum Role {
-  CONTRACTOR
-  WORKER
-}
-
 model Address {
-  id           String  @id @default(uuid())
-  addressLine1 String?
-  addressLine2 String?
+  id           String @id @default(uuid())
+  addressLine1 String
+  addressLine2 String
   city         String
   state        String
   pincode      String
@@ -39,7 +10,14 @@ model Address {
   sites        Site[]
 }
 
-//======================= Client =======================
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
 
 model Client {
   id          String   @id @default(uuid())
@@ -50,6 +28,11 @@ model Client {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt()
   sites       Site[]
+}
+
+enum Role {
+  CONTRACTOR
+  WORKER
 }
 
 model Site {
@@ -67,4 +50,19 @@ model Site {
   createdBy       User      @relation(fields: [createdById], references: [id])
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @default(now()) @updatedAt()
+}
+
+model User {
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  password       String
+  role           Role
+  mobile         String   @unique
+  address        Address? @relation(fields: [addressId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt()
+  addressId      String?
+  createdClients Client[]
+  createdSites   Site[]
 }

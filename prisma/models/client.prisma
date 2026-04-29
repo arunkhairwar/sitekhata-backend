@@ -1,0 +1,10 @@
+model Client {
+  id          String   @id @default(uuid())
+  name        String
+  mobile      String   @unique
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt()
+  sites       Site[]
+}
