@@ -1,0 +1,18 @@
+model User {
+  id          String      @id @default(ulid())
+  firstName   String
+  middleName  String?
+  lastName    String
+  password    String
+  countryCode String
+  profile     UserProfile?
+  mobile      String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now()) @updatedAt()
+  clients     Client[]
+  workforceWorkers WorkforceWorker[]
+
+  @@unique([mobile, countryCode],name:"mobile_country_code")
+  @@index([mobile, countryCode])
+  @@map("users")
+}

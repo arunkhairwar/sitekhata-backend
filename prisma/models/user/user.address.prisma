@@ -1,0 +1,14 @@
+model Address {
+    userProfileId String      @id
+    addressLine1  String?
+    addressLine2  String?
+    city          String?
+    state         String?
+    pincode       String?
+    country       String?
+    userProfile   UserProfile @relation(fields: [userProfileId], references: [userId], onDelete: Cascade)
+    createdAt     DateTime    @default(now())
+    updatedAt     DateTime    @default(now()) @updatedAt()
+
+    @@map("user_address")
+}

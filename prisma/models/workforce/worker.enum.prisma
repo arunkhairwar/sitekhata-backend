@@ -1,0 +1,9 @@
+enum WorkerRoleEnum {
+   HELPER
+   MISTRI
+   ELECTRICIAN
+   PLUMBER
+   PAINTER
+   CARPENTER
+   COOLY
+}

@@ -1,15 +1,3 @@
-model Address {
-  id           String @id @default(uuid())
-  addressLine1 String
-  addressLine2 String
-  city         String
-  state        String
-  pincode      String
-  country      String
-  User         User[]
-  sites        Site[]
-}
-
 generator client {
   provider = "prisma-client-js"
   output   = "../../generated/prisma"
@@ -20,7 +8,7 @@ datasource db {
 }
 
 model Client {
-  id          String   @id @default(uuid())
+  id          String   @id @default(ulid())
   name        String
   mobile      String   @unique
   createdById String
@@ -30,39 +18,126 @@ model Client {
   sites       Site[]
 }
 
-enum Role {
-  CONTRACTOR
-  WORKER
+model SiteAddress {
+  siteId       String      @id
+  addressLine1 String?
+  addressLine2 String?
+  city         String?
+  state        String?
+  pincode      String?
+  country      String?
+  siteProfiles SiteProfile @relation(fields: [siteId], references: [siteId], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt()
+
+  @@map("site_address")
 }
 
 model Site {
-  id              String    @id @default(uuid())
+  id              String       @id @default(ulid())
   name            String
-  image           String?
-  estimatedBudget Float?
+  estimatedBudget Int?
   startDate       DateTime?
   expectedEndDate DateTime?
   clientId        String
-  client          Client    @relation(fields: [clientId], references: [id])
-  address         Address?  @relation(fields: [addressId], references: [id])
-  addressId       String?
-  createdById     String
-  createdBy       User      @relation(fields: [createdById], references: [id])
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @default(now()) @updatedAt()
+  client          Client       @relation(fields: [clientId], references: [id])
+  profile         SiteProfile?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @default(now()) @updatedAt()
+
+  @@index([clientId])
+  @@map("sites")
+}
+
+model SiteProfile {
+  siteId    String       @id
+  site      Site         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  address   SiteAddress?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now()) @updatedAt()
+
+  @@map("site_profile")
+}
+
+model Address {
+  userProfileId String      @id
+  addressLine1  String?
+  addressLine2  String?
+  city          String?
+  state         String?
+  pincode       String?
+  country       String?
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [userId], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now()) @updatedAt()
+
+  @@map("user_address")
 }
 
 model User {
-  id             String   @id @default(uuid())
-  name           String
-  email          String   @unique
-  password       String
-  role           Role
-  mobile         String   @unique
-  address        Address? @relation(fields: [addressId], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now()) @updatedAt()
-  addressId      String?
-  createdClients Client[]
-  createdSites   Site[]
+  id               String            @id @default(ulid())
+  firstName        String
+  middleName       String?
+  lastName         String
+  password         String
+  countryCode      String
+  profile          UserProfile?
+  mobile           String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @default(now()) @updatedAt()
+  clients          Client[]
+  workforceWorkers WorkforceWorker[]
+
+  @@unique([mobile, countryCode], name: "mobile_country_code")
+  @@index([mobile, countryCode])
+  @@map("users")
+}
+
+model UserProfile {
+  userId           String   @id
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address          Address?
+  addressId        String?
+  availableForWork Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now()) @updatedAt()
+
+  @@map("user_profile")
+}
+
+enum WorkerRoleEnum {
+  HELPER
+  MISTRI
+  ELECTRICIAN
+  PLUMBER
+  PAINTER
+  CARPENTER
+  COOLY
+}
+
+model WorkforceWorker {
+  id          String         @id @default(uuid())
+  defaultWage Int            @default(0)
+  role        WorkerRoleEnum @default(HELPER)
+  workforceId String
+  workforce   WorkForce      @relation(fields: [workforceId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @default(now()) @updatedAt()
+
+  @@index([workforceId, userId])
+  @@map("workforce_workers")
+}
+
+model WorkForce {
+  id               String            @id @default(uuid())
+  name             String
+  maxMemberCount   Int               @default(10)
+  workforceWorkers WorkforceWorker[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @default(now()) @updatedAt()
+
+  @@map("workforces")
 }

@@ -1,0 +1,9 @@
+model SiteProfile {
+    siteId    String       @id
+    site      Site         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+    address   SiteAddress?
+    createdAt DateTime     @default(now())
+    updatedAt DateTime     @default(now()) @updatedAt()
+
+    @@map("site_profile")
+}

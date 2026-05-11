@@ -1,0 +1,11 @@
+model UserProfile {
+    userId           String   @id
+    user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    address          Address?
+    addressId        String?
+    availableForWork Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt()
+
+    @@map("user_profile")
+}

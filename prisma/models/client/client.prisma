@@ -1,5 +1,5 @@
 model Client {
-  id          String   @id @default(uuid())
+  id          String   @id @default(ulid())
   name        String
   mobile      String   @unique
   createdById String

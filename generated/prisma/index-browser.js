@@ -120,16 +120,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.AddressScalarFieldEnum = {
-  id: 'id',
-  addressLine1: 'addressLine1',
-  addressLine2: 'addressLine2',
-  city: 'city',
-  state: 'state',
-  pincode: 'pincode',
-  country: 'country'
-};
-
 exports.Prisma.ClientScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -139,30 +129,83 @@ exports.Prisma.ClientScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SiteAddressScalarFieldEnum = {
+  siteId: 'siteId',
+  addressLine1: 'addressLine1',
+  addressLine2: 'addressLine2',
+  city: 'city',
+  state: 'state',
+  pincode: 'pincode',
+  country: 'country',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SiteScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  image: 'image',
   estimatedBudget: 'estimatedBudget',
   startDate: 'startDate',
   expectedEndDate: 'expectedEndDate',
   clientId: 'clientId',
-  addressId: 'addressId',
-  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SiteProfileScalarFieldEnum = {
+  siteId: 'siteId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  userProfileId: 'userProfileId',
+  addressLine1: 'addressLine1',
+  addressLine2: 'addressLine2',
+  city: 'city',
+  state: 'state',
+  pincode: 'pincode',
+  country: 'country',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  email: 'email',
+  firstName: 'firstName',
+  middleName: 'middleName',
+  lastName: 'lastName',
   password: 'password',
-  role: 'role',
+  countryCode: 'countryCode',
   mobile: 'mobile',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  addressId: 'addressId'
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserProfileScalarFieldEnum = {
+  userId: 'userId',
+  addressId: 'addressId',
+  availableForWork: 'availableForWork',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WorkforceWorkerScalarFieldEnum = {
+  id: 'id',
+  defaultWage: 'defaultWage',
+  role: 'role',
+  workforceId: 'workforceId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WorkForceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  maxMemberCount: 'maxMemberCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -179,16 +222,26 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.Role = exports.$Enums.Role = {
-  CONTRACTOR: 'CONTRACTOR',
-  WORKER: 'WORKER'
+exports.WorkerRoleEnum = exports.$Enums.WorkerRoleEnum = {
+  HELPER: 'HELPER',
+  MISTRI: 'MISTRI',
+  ELECTRICIAN: 'ELECTRICIAN',
+  PLUMBER: 'PLUMBER',
+  PAINTER: 'PAINTER',
+  CARPENTER: 'CARPENTER',
+  COOLY: 'COOLY'
 };
 
 exports.Prisma.ModelName = {
-  Address: 'Address',
   Client: 'Client',
+  SiteAddress: 'SiteAddress',
   Site: 'Site',
-  User: 'User'
+  SiteProfile: 'SiteProfile',
+  Address: 'Address',
+  User: 'User',
+  UserProfile: 'UserProfile',
+  WorkforceWorker: 'WorkforceWorker',
+  WorkForce: 'WorkForce'
 };
 
 /**

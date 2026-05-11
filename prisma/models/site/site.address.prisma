@@ -1,0 +1,15 @@
+model SiteAddress {
+    siteId String @id
+    addressLine1 String?
+    addressLine2 String?
+    city         String?
+    state        String?
+    pincode      String?
+    country      String?
+    siteProfiles    SiteProfile @relation(fields: [siteId], references: [siteId], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt()
+
+    @@map("site_address")
+}

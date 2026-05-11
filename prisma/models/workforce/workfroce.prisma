@@ -1,0 +1,10 @@
+model WorkForce {
+    id               String            @id @default(uuid())
+    name             String
+    maxMemberCount   Int               @default(10)
+    workforceWorkers WorkforceWorker[]
+    createdAt        DateTime          @default(now())
+    updatedAt        DateTime          @default(now()) @updatedAt()
+
+    @@map("workforces")
+}

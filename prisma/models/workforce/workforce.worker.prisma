@@ -1,0 +1,14 @@
+model WorkforceWorker {
+    id          String         @id @default(uuid())
+    defaultWage Int            @default(0)
+    role        WorkerRoleEnum @default(HELPER)
+    workforceId String
+    workforce   WorkForce      @relation(fields: [workforceId], references: [id], onDelete: Cascade)
+    userId      String
+    user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+    createdAt   DateTime       @default(now())
+    updatedAt   DateTime       @default(now()) @updatedAt()
+
+    @@index([workforceId, userId])
+    @@map("workforce_workers")
+}
